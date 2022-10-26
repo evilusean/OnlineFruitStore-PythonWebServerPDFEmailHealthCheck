@@ -181,8 +181,11 @@ Note: There is no attachment file here, so you must be careful while defining th
 Next, go to the webmail inbox and refresh it. There should only be an email something goes wrong, so hopefully you don't see a new email.
 
 To test out your script, you can install the `stress` tool.
+
 `sudo apt install stress`
+
 #Next, call the tool using a good number of CPUs to fully load our CPU resources:
+
 `stress --cpu 8`
 
 Allow the stress test to run, as it will maximize our CPU utilization. Now run health_check.py by opening another SSH connection to the linux-instance. Navigate to Accessing the virtual machine on the navigation pane on the right-hand side to open another connection to the instance.
@@ -202,6 +205,7 @@ To set a user cron job use the following command:
 health_check.py now runs every 60 seconds!
 
 Congratulations!
+
 Congrats! You've successfully created a python script that processes images and descriptions and then updates your company's online website to add the new products. You have also generated a PDF report and sent it by email. Finally, you have also set up monitoring of the system's health.
 
 ## Googles IT Automation With Python Final Project: Online Fruit Store

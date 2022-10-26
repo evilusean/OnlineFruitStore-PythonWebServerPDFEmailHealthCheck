@@ -24,6 +24,11 @@ Finally, in parallel to the automation running, we want to check the health of t
 
 #### changeImage.py
 
+Markup :  `changeImage.py`
+
+You'll first need to get the information from the supplier that is currently stored in a Google Drive file. The supplier has sent data as large images with an associated description of the products in two files (.TIF for the image and .txt for the description).
+
+Markup :  `download_drive_file.sh`
 
 
 ## Googles IT Automation With Python Final Project: Online Fruit Store

@@ -22,14 +22,33 @@ Finally, in parallel to the automation running, we want to check the health of t
 
 ### Fetching supplier data/Resizing Images:
 
-#### changeImage.py
-
-Markup :  `changeImage.py`
+`changeImage.py`
 
 You'll first need to get the information from the supplier that is currently stored in a Google Drive file. The supplier has sent data as large images with an associated description of the products in two files (.TIF for the image and .txt for the description).
 
-Markup :  `download_drive_file.sh`
+Run `download_drive_file.sh` to download a file named `supplier-data.tar.gz`. Extracted using 'tar xf ~/supplier-data.tar.gz' in shell.
+This creates a directory named `supplier-data`, that contains subdirectories named `images` and `descriptions`.
 
+The subdirectory `images` contain images of various fruits, while the `descriptions` subdirectory has text files containing the description of each fruit.
+
+[CODE IMAGE]
+
+Here is the code used for a python script used to process the supplier images. It uses the PIL library to update all images within ~/supplier-data/images directory to the following specifications:
+
+* Size: Change image resolution from 3000x2000 to 600x400 pixel
+* Format: Change image format from .TIFF to .JPEG
+
+### Uploading images to web server:
+
+`supplier_image_upload.py`
+
+You have modified the fruit images through `changeImage.py` script. Now, you will have to upload these modified images to the web server that is handling the fruit catalog. To do that, you'll have to use the Python requests module to send the file contents to the upload URL.
+
+[CODE IMAGE]
+
+The Python script above, takes the jpeg images from the `supplier-data/images` directory that you've processed previously and uploads them to the web server fruit catalog.
+
+[UPDATED WEBSERVER IMAGE]
 
 ## Googles IT Automation With Python Final Project: Online Fruit Store
 

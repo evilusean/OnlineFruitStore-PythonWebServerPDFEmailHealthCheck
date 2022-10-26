@@ -46,9 +46,174 @@ You have modified the fruit images through `changeImage.py` script. Now, you wil
 
 [CODE IMAGE]
 
-The Python script above, takes the jpeg images from the `supplier-data/images` directory that you've processed previously and uploads them to the web server fruit catalog.
+The Python script above, takes the jpeg images from the `supplier-data/images` directory that you've processed previously and uploads them to the web server fruit catalog. 
 
 [UPDATED WEBSERVER IMAGE]
+
+### Uploading the descriptions:
+
+`run.py`
+
+[CODE IMAGE]
+
+The Django server is already set up to show the fruit catalog for your company. To add fruit images and their descriptions from the supplier on the fruit catalog web-server, create a new Python script that will automatically POST the fruit images and their respective description in JSON format.
+
+Write a Python script named `run.py` to process the text files (001.txt, 003.txt ...) from the `supplier-data/descriptions` directory. The script should turn the data into a JSON dictionary by adding all the required fields, including the image associated with the fruit (image_name), and uploading it to the webserver using the Python requests library.
+
+Now, you'll have to process the .txt files (named 001.txt, 002.txt, ...) in the supplier-data/descriptions/ directory and save them in a data structure so that you can then upload them via JSON. Note that all files are written in the following format, with each piece of information on its own line:
+
+* name
+* weight (in lbs)
+* description
+
+The data model in the Django application fruit has the following fields: name, weight, description and image_name. The weight field is defined as an integer field. So when you process the weight information of the fruit from the .txt file, you need to convert it into an integer. For example if the weight is "500 lbs", you need to drop "lbs" and convert "500" to an integer.
+
+The image_name field will allow the system to find the image associated with the fruit. Don't forget to add all fields, including the image_name! The final JSON object should be similar to:
+`{"name": "Watermelon", "weight": 500, "description": "Watermelon is good for relieving heat, eliminating annoyance and quenching thirst. It contains a lot of water, which is good for relieving the symptoms of acute fever immediately. The sugar and salt contained in watermelon can diuretic and eliminate kidney inflammation. Watermelon also contains substances that can lower blood pressure.", "image_name": "010.jpeg"}`
+Iterate over all the fruits and use post method from Python requests library to upload all the data to the URL webserver.
+
+[UPDATED WEBSERVER IMAGE]
+
+### Generate a PDF Report and send through an Email:
+
+`reports.py`
+
+[CODE IMAGE]
+
+`report_email.py`
+
+[CODE IMAGE]
+
+Once the images and descriptions have been uploaded to the fruit store web-server, you will have to generate a PDF file to send to the supplier, indicating that the data was correctly processed. To generate PDF reports, you can use the ReportLab library. The content of the report should look like this:
+
+Processed Update on <Today's date>
+
+[blank line]
+
+name: Apple
+
+weight: 500 lbs
+
+[blank line]
+
+name: Avocado
+
+weight: 200 lbs
+
+[blank line]
+
+Using the reportlab Python library, define the method generate_report to build the PDF reports.
+
+Create another script named `report_email.py` to process supplier fruit description data from `supplier-data/descriptions` directory.
+
+Import all the necessary libraries(`os`, `datetime` and `reports`) that will be used to process the text data from the `supplier-data/descriptions` directory into the format below:
+
+name: Apple
+
+weight: 500 lbs
+
+[blank line]
+
+name: Avocado
+
+weight: 200 lbs
+
+[blank line]
+
+...
+
+Once you have completed this, call the main method which will process the data and call the `generate_report` method from the `reports` module:
+
+if __name__ == "__main__":
+
+You will need to pass the following arguments to the `reports.generate_report` method: the text description processed from the text files as the `paragraph` argument, the report title as the `title` argument, and the file path of the PDF to be generated as the `attachment` argument (use `‘/tmp/processed.pdf'`)
+
+### Send Report Through an Email:
+
+`emails.py`
+
+[CODE IMAGE]
+
+Once the PDF is generated, you need to send the email using the `emails.generate_email()` and `emails.send_email()` methods.
+Define generate_email and send_email methods by importing necessary libraries.
+Use the following details to pass the parameters to emails.generate_email():
+* From: automation@example.com
+* To: username@example.com
+* Replace username with the username given in the Connection Details Panel on the right hand side.
+* Subject line: Upload Completed - Online Fruit Store
+* E-mail Body: All fruits are uploaded to our website successfully. A detailed list is attached to this email.
+* Attachment: Attach the path to the file processed.pdf
+
+[REPORT IMAGE]
+
+### Health check:
+
+`health_check.py`
+
+This is the last part of the lab, where you will have to write a Python script named health_check.py that will run in the background monitoring some of your system statistics: CPU usage, disk space, available memory and name resolution. Moreover, this Python script should send an email if there are problems, such as:
+
+* Report an error if CPU usage is over 80%
+* Report an error if available disk space is lower than 20%
+* Report an error if available memory is less than 500MB
+* Report an error if the hostname "localhost" cannot be resolved to "127.0.0.1"
+
+Complete the script to check the system statistics every 60 seconds, and in event of any issues detected among the ones mentioned above, an email should be sent with the following content:
+
+From: automation@example.com
+To: username@example.com
+Replace username with the username given in the Connection Details Panel on the right hand side.
+Subject line:
+Case
+
+Subject line
+
+CPU usage is over 80%
+
+Error - CPU usage is over 80%
+
+Available disk space is lower than 20%
+
+Error - Available disk space is less than 20%
+
+available memory is less than 500MB
+
+Error - Available memory is less than 500MB
+
+hostname "localhost" cannot be resolved to "127.0.0.1"
+
+Error - localhost cannot be resolved to 127.0.0.1
+
+E-mail Body: Please check your system and resolve the issue as soon as possible.
+
+[CODE IMAGE]
+
+Note: There is no attachment file here, so you must be careful while defining the generate_email() method in the emails.py script or you can create a separate generate_error_report() method for handling non-attachment email.
+
+Next, go to the webmail inbox and refresh it. There should only be an email something goes wrong, so hopefully you don't see a new email.
+
+To test out your script, you can install the `stress` tool.
+`sudo apt install stress`
+#Next, call the tool using a good number of CPUs to fully load our CPU resources:
+`stress --cpu 8`
+
+Allow the stress test to run, as it will maximize our CPU utilization. Now run health_check.py by opening another SSH connection to the linux-instance. Navigate to Accessing the virtual machine on the navigation pane on the right-hand side to open another connection to the instance.
+
+Check your inbox for any new email.
+
+[STRESS TEST EMAIL IMAGE]
+
+Now, you will be setting a cron job that executes the script health_check.py every 60 seconds and sends health status to the respective user.
+
+To set a user cron job use the following command:
+
+`crontab -e`
+
+[CRONJOB IMAGE]
+
+health_check.py now runs every 60 seconds!
+
+Congratulations!
+Congrats! You've successfully created a python script that processes images and descriptions and then updates your company's online website to add the new products. You have also generated a PDF report and sent it by email. Finally, you have also set up monitoring of the system's health.
 
 ## Googles IT Automation With Python Final Project: Online Fruit Store
 
@@ -73,6 +238,8 @@ Python Image Library (PIL) - For Image Manipulation
 Requests (HTTP client library) 
 
 ReportLab (PDF creation library)
+
+datetime(for PDF report)
 
 email (constructing email)
 

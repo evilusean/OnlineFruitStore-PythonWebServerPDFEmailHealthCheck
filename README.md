@@ -165,23 +165,15 @@ Replace username with the username given in the Connection Details Panel on the 
 Subject line:
 Case
 
-Subject line
+Case | Subject line
 
-CPU usage is over 80%
+CPU usage is over 80% | Error - CPU usage is over 80%
 
-Error - CPU usage is over 80%
+Available disk space is lower than 20% | Error - Available disk space is less than 20%
 
-Available disk space is lower than 20%
+available memory is less than 500MB | Error - Available memory is less than 500MB
 
-Error - Available disk space is less than 20%
-
-available memory is less than 500MB
-
-Error - Available memory is less than 500MB
-
-hostname "localhost" cannot be resolved to "127.0.0.1"
-
-Error - localhost cannot be resolved to 127.0.0.1
+hostname "localhost" cannot be resolved to "127.0.0.1" | Error - localhost cannot be resolved to 127.0.0.1
 
 E-mail Body: Please check your system and resolve the issue as soon as possible.
 

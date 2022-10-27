@@ -26,7 +26,15 @@ Finally, in parallel to the automation running, we want to check the health of t
 
 You'll first need to get the information from the supplier that is currently stored in a Google Drive file. The supplier has sent data as large images with an associated description of the products in two files (.TIF for the image and .txt for the description).
 
-Run `download_drive_file.sh` to download a file named `supplier-data.tar.gz`. Extracted using 'tar xf ~/supplier-data.tar.gz' in shell.
+To download the file from the supplier onto our linux-instance virtual machine we will first grant executable permission to the `download_drive_file.sh` script.
+
+`sudo chmod +x ~/download_drive_file.sh`
+
+Run the download_drive_file.sh shell script with the following arguments
+
+`./download_drive_file.sh 1LePo57dJcgzoK4uiI_48S01Etck7w_5f supplier-data.tar.gz`
+
+Run `download_drive_file.sh` to download a file named `supplier-data.tar.gz`. Extracted using `tar xf ~/supplier-data.tar.gz` in shell.
 This creates a directory named `supplier-data`, that contains subdirectories named `images` and `descriptions`.
 
 The subdirectory `images` contain images of various fruits, while the `descriptions` subdirectory has text files containing the description of each fruit.

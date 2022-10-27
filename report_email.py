@@ -8,7 +8,7 @@ import datetime
 user = os.getenv('USER')
 
 #image directory
-description_directory = '/home/{}/supplier- data/descriptions/'.format(user)
+description_directory = '/home/{}/supplier-data/descriptions/'.format(user)
 
 def pdf_body(input_for, desc_dir):
     """Generating a summary with two lists, which gives the output name and weight"""

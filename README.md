@@ -47,7 +47,7 @@ The subdirectory `images` contain images of various fruits, while the `descripti
 <img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/2changeImage.jpg"</center>  
 </p>
 
-Here is the code used for a python script used to process the supplier images. It uses the PIL library to update all images within ~/supplier-data/images directory to the following specifications:
+Here is the code used for a python script used to process the supplier images. It uses the PIL library to update all images within `~/supplier-data/images` directory to the following specifications:
 
 * Size: Change image resolution from 3000x2000 to 600x400 pixel
 * Format: Change image format from .TIFF to .JPEG
@@ -58,17 +58,23 @@ Here is the code used for a python script used to process the supplier images. I
 
 You have modified the fruit images through `changeImage.py` script. Now, you will have to upload these modified images to the web server that is handling the fruit catalog. To do that, you'll have to use the Python requests module to send the file contents to the upload URL.
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/3supplier_image_upload.jpg"</center>  
+</p>
 
 The Python script above, takes the jpeg images from the `supplier-data/images` directory that you've processed previously and uploads them to the web server fruit catalog. 
 
-[UPDATED WEBSERVER IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/4WebServerImagesUploaded.jpg"</center> 
+</p>
 
 ### Uploading the descriptions:
 
 `run.py`
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/5run.jpg"</center> 
+</p>
 
 The Django server is already set up to show the fruit catalog for your company. To add fruit images and their descriptions from the supplier on the fruit catalog web-server, create a new Python script that will automatically POST the fruit images and their respective description in JSON format.
 
@@ -86,17 +92,23 @@ The image_name field will allow the system to find the image associated with the
 `{"name": "Watermelon", "weight": 500, "description": "Watermelon is good for relieving heat, eliminating annoyance and quenching thirst. It contains a lot of water, which is good for relieving the symptoms of acute fever immediately. The sugar and salt contained in watermelon can diuretic and eliminate kidney inflammation. Watermelon also contains substances that can lower blood pressure.", "image_name": "010.jpeg"}`
 Iterate over all the fruits and use post method from Python requests library to upload all the data to the URL webserver.
 
-[UPDATED WEBSERVER IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/6WebServerFruitDescriptionUpdate.jpg"</center> 
+</p>
 
 ### Generate a PDF Report and send through an Email:
 
 `reports.py`
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/7reports.jpg"</center> 
+</p>
 
 `report_email.py`
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/8report_email.jpg"</center> 
+</p>
 
 Once the images and descriptions have been uploaded to the fruit store web-server, you will have to generate a PDF file to send to the supplier, indicating that the data was correctly processed. To generate PDF reports, you can use the ReportLab library. The content of the report should look like this:
 
@@ -138,15 +150,15 @@ weight: 200 lbs
 
 Once you have completed this, call the main method which will process the data and call the `generate_report` method from the `reports` module:
 
-if __name__ == "__main__":
-
 You will need to pass the following arguments to the `reports.generate_report` method: the text description processed from the text files as the `paragraph` argument, the report title as the `title` argument, and the file path of the PDF to be generated as the `attachment` argument (use `‘/tmp/processed.pdf'`)
 
 ### Send Report Through an Email:
 
 `emails.py`
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/9emails.jpg"</center> 
+</p>
 
 Once the PDF is generated, you need to send the email using the `emails.generate_email()` and `emails.send_email()` methods.
 Define generate_email and send_email methods by importing necessary libraries.
@@ -158,7 +170,9 @@ Use the following details to pass the parameters to emails.generate_email():
 * E-mail Body: All fruits are uploaded to our website successfully. A detailed list is attached to this email.
 * Attachment: Attach the path to the file processed.pdf
 
-[REPORT IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/10WebMailPDFReport.jpg"</center> 
+</p>
 
 ### Health check:
 
@@ -188,7 +202,9 @@ hostname "localhost" cannot be resolved to "127.0.0.1" | Error - localhost canno
 
 E-mail Body: Please check your system and resolve the issue as soon as possible.
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/11healthcheck.jpg"</center> 
+</p>
 
 Note: There is no attachment file here, so you must be careful while defining the generate_email() method in the emails.py script or you can create a separate generate_error_report() method for handling non-attachment email.
 
@@ -206,15 +222,15 @@ Allow the stress test to run, as it will maximize our CPU utilization. Now run h
 
 Check your inbox for any new email.
 
-[STRESS TEST EMAIL IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/12StressCPUEmail.jpg"</center> 
+</p>
 
 Now, you will be setting a cron job that executes the script health_check.py every 60 seconds and sends health status to the respective user.
 
 To set a user cron job use the following command:
 
 `crontab -e`
-
-[CRONJOB IMAGE]
 
 health_check.py now runs every 60 seconds!
 

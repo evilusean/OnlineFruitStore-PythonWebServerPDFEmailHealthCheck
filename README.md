@@ -43,7 +43,9 @@ This creates a directory named `supplier-data`, that contains subdirectories nam
 
 The subdirectory `images` contain images of various fruits, while the `descriptions` subdirectory has text files containing the description of each fruit.
 
-[CODE IMAGE]
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/2changeImage.jpg"</center>  
+</p>
 
 Here is the code used for a python script used to process the supplier images. It uses the PIL library to update all images within ~/supplier-data/images directory to the following specifications:
 

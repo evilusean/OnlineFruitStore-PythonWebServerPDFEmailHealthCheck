@@ -34,6 +34,10 @@ Run the download_drive_file.sh shell script with the following arguments
 
 `./download_drive_file.sh 1LePo57dJcgzoK4uiI_48S01Etck7w_5f supplier-data.tar.gz`
 
+<p align="center">  
+<img src="https://github.com/evilusean/OnlineFruitStore-PythonWebServerPDFEmailHealthCheck/blob/main/Images/1supplier-dataImg.png?raw=true"</center>  
+</p>
+
 Run `download_drive_file.sh` to download a file named `supplier-data.tar.gz`. Extracted using `tar xf ~/supplier-data.tar.gz` in shell.
 This creates a directory named `supplier-data`, that contains subdirectories named `images` and `descriptions`.
 
